@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { SeedCharacters } from "../controllers/controllers.js";
+import {
+  seedCharacters,
+  getAllCharacters,
+} from "../controllers/controllers.js";
 
 const router = Router();
 
 // GET all characters
-// router.route("/").get(getAllCharacters);
+router.route("/").get(getAllCharacters);
 // GET a single character by ID
 // GET characters by species
 // GET characters by affiliation
@@ -15,6 +18,6 @@ const router = Router();
 // GET all Jedi characters
 
 // Seed DB with Star Wars characters
-router.post("/seed", SeedCharacters);
+router.route("seed").post(seedCharacters);
 
 export default router;
