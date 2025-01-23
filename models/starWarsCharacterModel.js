@@ -1,31 +1,73 @@
 import mongoose from "mongoose";
 
-const starWarsSchema = mongoose.Schema({
-  name: String,
-  species: String,
-  homeworld: String,
-  affiliation: String,
-  stats: {
-    forceRating: Number,
-    combatSkill: Number,
-    pilotingAbility: Number,
-    diplomacyRating: Number,
+const StatsSchema = new mongoose.Schema({
+  forceRating: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 100,
   },
-  weapons: [String],
-  vehicles: ["X-wing Starfighter", "Snowspeeder"],
-  isJedi: true,
-  apprentices: ["Ben Solo", "Grogu"],
-  master: "Obi-Wan Kenobi",
-  notableAchievements: [
-    "Destroyed the First Death Star",
-    "Redeemed Darth Vader",
-    "Restored the Jedi Order",
-  ],
+  combatSkill: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 100,
+  },
+  pilotingAbility: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 100,
+  },
+  diplomacyRating: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 100,
+  },
 });
 
-const starWarsCharacterModel = mongoose.model(
-  "StarWarsCharacter",
-  starWarsSchema,
+const CharacterSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    species: {
+      type: String,
+      required: true,
+    },
+    homeworld: {
+      type: String,
+      required: true,
+    },
+    affiliation: {
+      type: String,
+      required: true,
+    },
+    stats: {
+      type: StatsSchema,
+      required: true,
+    },
+    weapons: [String],
+    vehicles: [String],
+    isJedi: {
+      type: Boolean,
+      default: false,
+    },
+    apprentices: [String],
+    master: {
+      type: String,
+      default: "",
+    },
+    notableAchievements: [String],
+  },
+  {
+    timestamps: true,
+  },
 );
 
-export default starWarsCharacterModel;
+const StarWarsCharacter = mongoose.model("StarWarsCharacter", CharacterSchema);
+
+export default StarWarsCharacter;

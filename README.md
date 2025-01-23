@@ -1,4 +1,4 @@
-I'll create a Star Wars-themed CRUD API exercise for you to build. This will help you practice building RESTful endpoints and working with MongoDB/Mongoose.
+Create a Star Wars-themed CRUD API exercise for you to build. This will help you practice building RESTful endpoints and working with MongoDB/Mongoose.
 
 Exercise: Star Wars Character Database API
 
